@@ -1,12 +1,22 @@
 import os
-from huggingface_hub import upload_folder
+from huggingface_hub import HfApi
 
 token = os.environ["HF_TOKEN"]
+repo_id = "KrArunT/my-blog"
 
-upload_folder(
-    repo_id="KrArunT/my-blog",
+api = HfApi(token=token)
+
+# Ensure the repository exists
+api.create_repo(
+    repo_id=repo_id,
+    repo_type="space",
+    exist_ok=True,
+    space_sdk="static"
+)
+
+# Upload the folder
+api.upload_folder(
+    repo_id=repo_id,
     folder_path=".",
     repo_type="space",
-    token=token,
-    create_repo=True
 )
