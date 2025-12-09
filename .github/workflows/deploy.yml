@@ -22,7 +22,7 @@ jobs:
         python3 - << 'EOF'
 from huggingface_hub import upload_folder
 upload_folder(
-    repo_id="<your-username>/my-blog",
+    repo_id="ArunKr/my-blog",
     folder_path=".",
     repo_type="space"
 )
