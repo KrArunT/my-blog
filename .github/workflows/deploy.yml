@@ -21,10 +21,14 @@ jobs:
       run: |
         python3 - << 'EOF'
 from huggingface_hub import upload_folder
+
 upload_folder(
     repo_id="ArunKr/my-blog",
     folder_path=".",
-    repo_type="space"
+    repo_type="space",
+    token="${HF_TOKEN}",
+    create_pr=False,     # (optional) push directly
+    create_repo=True     # create repo if it doesn't exist
 )
 EOF
 
