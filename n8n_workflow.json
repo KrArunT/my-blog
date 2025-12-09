@@ -1,8 +1,9 @@
 {
-    "name": "Daily AI News Poster (OpenAI)",
+    "name": "Daily AI News Poster (Agent)",
     "nodes": [
         {
             "parameters": {},
+            "id": "start-trigger",
             "name": "Start",
             "type": "n8n-nodes-base.start",
             "typeVersion": 1,
@@ -13,34 +14,64 @@
         },
         {
             "parameters": {
-                "model": "gpt-4-turbo",
-                "prompt": "Generate a JSON array of 10 items representing the latest trending topics or potential news in Artificial Intelligence. \n\nEach item object must strictly follow this schema:\n{\n  \"title\": \"Headline string\",\n  \"date\": \"Today's date in Month Day, Year format (e.g. December 9, 2025)\",\n  \"readTime\": \"Calculated read time string (e.g. '3 min read')\",\n  \"excerpt\": \"A short engaging summary of the news (max 150 chars)\",\n  \"link\": \"#\" \n}\n\nReturn ONLY the raw JSON array. Do not include markdown formatting like ```json.",
-                "maxTokens": 2000,
-                "temperature": 0.7
+                "text": "Generate a JSON array of 10 items representing the latest trending topics or potential news in Artificial Intelligence. \n\nEach item object must strictly follow this schema:\n{\n  \"title\": \"Headline string\",\n  \"date\": \"Today's date in Month Day, Year format (e.g. December 9, 2025)\",\n  \"readTime\": \"Calculated read time string (e.g. '3 min read')\",\n  \"excerpt\": \"A short engaging summary of the news (max 150 chars)\",\n  \"link\": \"#\" \n}\n\nReturn ONLY the raw JSON array. Do not include markdown formatting like ```json.",
+                "options": {}
             },
-            "name": "OpenAI Generator",
-            "type": "n8n-nodes-base.openAi",
-            "typeVersion": 1,
+            "id": "ai-agent",
+            "name": "AI Agent",
+            "type": "@n8n/n8n-nodes-langchain.agent",
             "position": [
                 460,
                 300
             ],
+            "typeVersion": 1.7
+        },
+        {
+            "parameters": {
+                "model": {
+                    "__rl": true,
+                    "value": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+                    "mode": "list",
+                    "cachedResultName": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+                },
+                "options": {}
+            },
+            "id": "openai-chat-model",
+            "name": "OpenAI Chat Model",
+            "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+            "position": [
+                460,
+                500
+            ],
+            "typeVersion": 1.2,
             "credentials": {
                 "openAiApi": {
-                    "id": "YOUR_OPENAI_CREDENTIAL_ID",
-                    "name": "OpenAI Account"
+                    "id": "qvQsD4AHOZc1tuWI",
+                    "name": "OpenAi account"
                 }
             }
         },
         {
+            "parameters": {},
+            "id": "simple-memory",
+            "name": "Simple Memory",
+            "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+            "position": [
+                580,
+                500
+            ],
+            "typeVersion": 1.3
+        },
+        {
             "parameters": {
-                "functionCode": "const generatedContent = items[0].json.choices[0].message.content;\nlet posts = [];\n\ntry {\n  posts = JSON.parse(generatedContent);\n} catch (e) {\n  // Fallback if parsing fails or extra text is included\n  console.log(\"Parsing failed, attempting cleanup\");\n  const cleanJson = generatedContent.replace(/```json/g, '').replace(/```/g, '').trim();\n  posts = JSON.parse(cleanJson);\n}\n\n// Add IDs\nconst formattedPosts = posts.map((post, index) => ({\n  id: Date.now() + index,\n  ...post\n}));\n\nreturn [{ json: { content: JSON.stringify(formattedPosts, null, 2), path: 'posts.json', message: `Update posts via OpenAI: ${new Date().toISOString()}` } }];"
+                "functionCode": "const generatedContent = items[0].json.output;\nlet posts = [];\n\ntry {\n  posts = JSON.parse(generatedContent);\n} catch (e) {\n  console.log(\"Parsing failed, attempting cleanup\");\n  const cleanJson = generatedContent.replace(/```json/g, '').replace(/```/g, '').trim();\n  posts = JSON.parse(cleanJson);\n}\n\n// Add IDs\nconst formattedPosts = posts.map((post, index) => ({\n  id: Date.now() + index,\n  ...post\n}));\n\nreturn [{ json: { content: JSON.stringify(formattedPosts, null, 2), path: 'posts.json', message: `Update posts via Agent: ${new Date().toISOString()}` } }];"
             },
+            "id": "format-json",
             "name": "Format JSON",
             "type": "n8n-nodes-base.function",
             "typeVersion": 1,
             "position": [
-                680,
+                780,
                 300
             ]
         },
@@ -55,11 +86,12 @@
                 "fileContent": "={{$json[\"content\"]}}",
                 "commitMessage": "={{$json[\"message\"]}}"
             },
+            "id": "update-github",
             "name": "Update GitHub",
             "type": "n8n-nodes-base.github",
             "typeVersion": 1,
             "position": [
-                900,
+                1000,
                 300
             ],
             "credentials": {
@@ -75,14 +107,36 @@
             "main": [
                 [
                     {
-                        "node": "OpenAI Generator",
+                        "node": "AI Agent",
                         "type": "main",
                         "index": 0
                     }
                 ]
             ]
         },
-        "OpenAI Generator": {
+        "OpenAI Chat Model": {
+            "ai_languageModel": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_languageModel",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Simple Memory": {
+            "ai_memory": [
+                [
+                    {
+                        "node": "AI Agent",
+                        "type": "ai_memory",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "AI Agent": {
             "main": [
                 [
                     {

@@ -1,0 +1,30 @@
+name: Deploy Workflow to n8n
+
+on:
+  push:
+    paths:
+      - 'n8n_workflow.json'
+      - '.github/workflows/deploy-n8n.yml'
+    branches:
+      - 'main'
+
+jobs:
+  deploy-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Deploy to n8n
+        env:
+          N8N_HOST: ${{ secrets.N8N_HOST }}
+          N8N_API_KEY: ${{ secrets.N8N_API_KEY }}
+        run: python3 .github/scripts/deploy-n8n.py
