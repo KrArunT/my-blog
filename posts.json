@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "title": "My First Blog Post",
+        "date": "December 8, 2025",
+        "readTime": "2 min read",
+        "excerpt": "This is a simple blog deployed on Hugging Face Spaces using GitHub Actions! Now upgraded with a premium UI.",
+        "link": "#"
+    },
+    {
+        "id": 2,
+        "title": "Designing for the Future",
+        "date": "Coming Soon",
+        "readTime": "5 min read",
+        "excerpt": "How modern web standards are changing the way we build for the web. Stay tuned for more insights.",
+        "link": "#"
+    }
+]

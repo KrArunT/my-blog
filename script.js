@@ -21,4 +21,35 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', theme);
         themeToggle.innerHTML = theme === 'light' ? moonIcon : sunIcon;
     }
+
+    // Load Blog Posts
+    loadPosts();
+
+    async function loadPosts() {
+        const postGrid = document.getElementById('postGrid');
+        try {
+            const response = await fetch('posts.json');
+            const posts = await response.json();
+
+            // Clear loading state if any
+            postGrid.innerHTML = '';
+
+            posts.forEach((post, index) => {
+                const article = document.createElement('article');
+                article.className = 'post-card';
+                article.style.animationDelay = `${(index + 1) * 0.1}s`;
+
+                article.innerHTML = `
+                    <div class="post-meta">${post.date} • ${post.readTime}</div>
+                    <h2 class="post-title">${post.title}</h2>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <a href="${post.link}" class="btn-read">Read Article →</a>
+                `;
+                postGrid.appendChild(article);
+            });
+        } catch (error) {
+            console.error('Error loading posts:', error);
+            postGrid.innerHTML = '<p class="error-msg">Failed to load posts.</p>';
+        }
+    }
 });

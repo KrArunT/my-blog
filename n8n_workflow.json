@@ -1,0 +1,101 @@
+{
+    "name": "Daily AI News Poster",
+    "nodes": [
+        {
+            "parameters": {},
+            "name": "Start",
+            "type": "n8n-nodes-base.start",
+            "typeVersion": 1,
+            "position": [
+                240,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "https://newsapi.org/v2/everything?q=Artificial%20Intelligence&sortBy=publishedAt&apiKey=YOUR_NEWSAPI_KEY",
+                "options": {}
+            },
+            "name": "Fetch AI News",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 2,
+            "position": [
+                460,
+                300
+            ],
+            "notes": "Replace URL with your preferred news source (e.g., RSS, Google News)"
+        },
+        {
+            "parameters": {
+                "functionCode": "const maxPosts = 10;\nconst news = items[0].json.articles.slice(0, maxPosts);\n\nconst formattedPosts = news.map((article, index) => ({\n  id: Date.now() + index,\n  title: article.title,\n  date: new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),\n  readTime: '3 min read', // Placeholder or calculation\n  excerpt: article.description || \"Click to read more about this news.\",\n  link: article.url\n}));\n\nreturn [{ json: { content: JSON.stringify(formattedPosts, null, 2), path: 'posts.json', message: `Update posts: ${new Date().toISOString()}` } }];"
+            },
+            "name": "Format JSON",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                680,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "authentication": "oAuth2",
+                "resource": "file",
+                "operation": "edit",
+                "owner": "ArunKr",
+                "repository": "my-blog",
+                "filePath": "posts.json",
+                "fileContent": "={{$json[\"content\"]}}",
+                "commitMessage": "={{$json[\"message\"]}}"
+            },
+            "name": "Update GitHub",
+            "type": "n8n-nodes-base.github",
+            "typeVersion": 1,
+            "position": [
+                900,
+                300
+            ],
+            "credentials": {
+                "githubOAuth2Api": {
+                    "id": "YOUR_GITHUB_CREDENTIAL_ID",
+                    "name": "GitHub Account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Start": {
+            "main": [
+                [
+                    {
+                        "node": "Fetch AI News",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Fetch AI News": {
+            "main": [
+                [
+                    {
+                        "node": "Format JSON",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Format JSON": {
+            "main": [
+                [
+                    {
+                        "node": "Update GitHub",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
