@@ -19,7 +19,7 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        python3 - << EOF
+        python3 - <<EOF
 from huggingface_hub import upload_folder
 import os
 
