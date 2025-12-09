@@ -1,5 +1,5 @@
 {
-    "name": "Daily AI News Poster",
+    "name": "Daily AI News Poster (OpenAI)",
     "nodes": [
         {
             "parameters": {},
@@ -13,21 +13,28 @@
         },
         {
             "parameters": {
-                "url": "https://newsapi.org/v2/everything?q=Artificial%20Intelligence&sortBy=publishedAt&apiKey=YOUR_NEWSAPI_KEY",
-                "options": {}
+                "model": "gpt-4-turbo",
+                "prompt": "Generate a JSON array of 10 items representing the latest trending topics or potential news in Artificial Intelligence. \n\nEach item object must strictly follow this schema:\n{\n  \"title\": \"Headline string\",\n  \"date\": \"Today's date in Month Day, Year format (e.g. December 9, 2025)\",\n  \"readTime\": \"Calculated read time string (e.g. '3 min read')\",\n  \"excerpt\": \"A short engaging summary of the news (max 150 chars)\",\n  \"link\": \"#\" \n}\n\nReturn ONLY the raw JSON array. Do not include markdown formatting like ```json.",
+                "maxTokens": 2000,
+                "temperature": 0.7
             },
-            "name": "Fetch AI News",
-            "type": "n8n-nodes-base.httpRequest",
-            "typeVersion": 2,
+            "name": "OpenAI Generator",
+            "type": "n8n-nodes-base.openAi",
+            "typeVersion": 1,
             "position": [
                 460,
                 300
             ],
-            "notes": "Replace URL with your preferred news source (e.g., RSS, Google News)"
+            "credentials": {
+                "openAiApi": {
+                    "id": "YOUR_OPENAI_CREDENTIAL_ID",
+                    "name": "OpenAI Account"
+                }
+            }
         },
         {
             "parameters": {
-                "functionCode": "const maxPosts = 10;\nconst news = items[0].json.articles.slice(0, maxPosts);\n\nconst formattedPosts = news.map((article, index) => ({\n  id: Date.now() + index,\n  title: article.title,\n  date: new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),\n  readTime: '3 min read', // Placeholder or calculation\n  excerpt: article.description || \"Click to read more about this news.\",\n  link: article.url\n}));\n\nreturn [{ json: { content: JSON.stringify(formattedPosts, null, 2), path: 'posts.json', message: `Update posts: ${new Date().toISOString()}` } }];"
+                "functionCode": "const generatedContent = items[0].json.choices[0].message.content;\nlet posts = [];\n\ntry {\n  posts = JSON.parse(generatedContent);\n} catch (e) {\n  // Fallback if parsing fails or extra text is included\n  console.log(\"Parsing failed, attempting cleanup\");\n  const cleanJson = generatedContent.replace(/```json/g, '').replace(/```/g, '').trim();\n  posts = JSON.parse(cleanJson);\n}\n\n// Add IDs\nconst formattedPosts = posts.map((post, index) => ({\n  id: Date.now() + index,\n  ...post\n}));\n\nreturn [{ json: { content: JSON.stringify(formattedPosts, null, 2), path: 'posts.json', message: `Update posts via OpenAI: ${new Date().toISOString()}` } }];"
             },
             "name": "Format JSON",
             "type": "n8n-nodes-base.function",
@@ -68,14 +75,14 @@
             "main": [
                 [
                     {
-                        "node": "Fetch AI News",
+                        "node": "OpenAI Generator",
                         "type": "main",
                         "index": 0
                     }
                 ]
             ]
         },
-        "Fetch AI News": {
+        "OpenAI Generator": {
             "main": [
                 [
                     {
