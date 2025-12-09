@@ -1,108 +1,125 @@
 {
-    "name": "Daily AI News Poster (OpenAI)",
-    "nodes": [
-        {
-            "parameters": {},
-            "name": "Start",
-            "type": "n8n-nodes-base.start",
-            "typeVersion": 1,
-            "position": [
-                240,
-                300
-            ]
+  "name": "Daily AI News Poster (OpenAI)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "start-node",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [-200, 0]
+    },
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "When clicking ‘Execute workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-200, 200]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+          "mode": "list",
+          "cachedResultName": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
         },
-        {
-            "parameters": {
-                "model": "gpt-4-turbo",
-                "prompt": "Generate a JSON array of 10 items representing the latest trending topics or potential news in Artificial Intelligence. \n\nEach item object must strictly follow this schema:\n{\n  \"title\": \"Headline string\",\n  \"date\": \"Today's date in Month Day, Year format (e.g. December 9, 2025)\",\n  \"readTime\": \"Calculated read time string (e.g. '3 min read')\",\n  \"excerpt\": \"A short engaging summary of the news (max 150 chars)\",\n  \"link\": \"#\" \n}\n\nReturn ONLY the raw JSON array. Do not include markdown formatting like ```json.",
-                "maxTokens": 2000,
-                "temperature": 0.7
-            },
-            "name": "OpenAI Generator",
-            "type": "n8n-nodes-base.openAi",
-            "typeVersion": 1,
-            "position": [
-                460,
-                300
-            ],
-            "credentials": {
-                "openAiApi": {
-                    "id": "YOUR_OPENAI_CREDENTIAL_ID",
-                    "name": "OpenAI Account"
-                }
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "medium"
+          }
+        },
+        "options": {
+          "promptConfig": {
+            "promptOptions": {
+              "variables": "Generate a JSON array of 10 items representing the latest trending topics or potential news in Artificial Intelligence.\n\nEach item must strictly follow this schema:\n{\n  \"title\": \"Headline string\",\n  \"date\": \"Today's date in Month Day, Year format\",\n  \"readTime\": \"Calculated read time string like '3 min read'\",\n  \"excerpt\": \"A short engaging summary (max 150 chars)\",\n  \"link\": \"#\"\n}\n\nReturn ONLY the raw JSON. No markdown."
             }
-        },
-        {
-            "parameters": {
-                "functionCode": "const generatedContent = items[0].json.choices[0].message.content;\nlet posts = [];\n\ntry {\n  posts = JSON.parse(generatedContent);\n} catch (e) {\n  // Fallback if parsing fails or extra text is included\n  console.log(\"Parsing failed, attempting cleanup\");\n  const cleanJson = generatedContent.replace(/```json/g, '').replace(/```/g, '').trim();\n  posts = JSON.parse(cleanJson);\n}\n\n// Add IDs\nconst formattedPosts = posts.map((post, index) => ({\n  id: Date.now() + index,\n  ...post\n}));\n\nreturn [{ json: { content: JSON.stringify(formattedPosts, null, 2), path: 'posts.json', message: `Update posts via OpenAI: ${new Date().toISOString()}` } }];"
-            },
-            "name": "Format JSON",
-            "type": "n8n-nodes-base.function",
-            "typeVersion": 1,
-            "position": [
-                680,
-                300
-            ]
-        },
-        {
-            "parameters": {
-                "authentication": "oAuth2",
-                "resource": "file",
-                "operation": "edit",
-                "owner": "ArunKr",
-                "repository": "my-blog",
-                "filePath": "posts.json",
-                "fileContent": "={{$json[\"content\"]}}",
-                "commitMessage": "={{$json[\"message\"]}}"
-            },
-            "name": "Update GitHub",
-            "type": "n8n-nodes-base.github",
-            "typeVersion": 1,
-            "position": [
-                900,
-                300
-            ],
-            "credentials": {
-                "githubOAuth2Api": {
-                    "id": "YOUR_GITHUB_CREDENTIAL_ID",
-                    "name": "GitHub Account"
-                }
-            }
+          }
         }
-    ],
-    "connections": {
-        "Start": {
-            "main": [
-                [
-                    {
-                        "node": "OpenAI Generator",
-                        "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
-        },
-        "OpenAI Generator": {
-            "main": [
-                [
-                    {
-                        "node": "Format JSON",
-                        "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
-        },
-        "Format JSON": {
-            "main": [
-                [
-                    {
-                        "node": "Update GitHub",
-                        "type": "main",
-                        "index": 0
-                    }
-                ]
-            ]
+      },
+      "id": "openai-chat",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [0, 0],
+      "credentials": {
+        "openAiApi": {
+          "id": "qvQsD4AHOZc1tuWI",
+          "name": "OpenAi account"
         }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "let raw = '';\n\n// 1. Standard OpenAI Chat format\nif (items[0].json?.choices?.[0]?.message?.content) {\n  raw = items[0].json.choices[0].message.content;\n}\n// 2. LangChain/AI Agent typical output\nelse if (items[0].json?.data) {\n  raw = items[0].json.data;\n}\n// 3. Direct string\nelse if (typeof items[0].json === 'string') {\n  raw = items[0].json;\n}\n// 4. Fallback\nelse {\n  raw = JSON.stringify(items[0].json, null, 2);\n}\n\nraw = raw.replace(/```json/g, '').replace(/```/g, '').trim();\n\nlet posts = [];\ntry {\n  posts = JSON.parse(raw);\n  if (!Array.isArray(posts)) throw new Error('Output must be a JSON array');\n} catch (err) {\n  throw new Error('❌ Could not parse AI response into valid JSON array. Raw Output:\\n' + raw);\n}\n\n// Add unique IDs\nconst formattedPosts = posts.map((post, index) => ({\n  id: Date.now() + index,\n  ...post\n}));\n\nreturn [\n  {\n    json: {\n      content: JSON.stringify(formattedPosts, null, 2),\n      path: 'posts.json',\n      message: `Update posts via AI: ${new Date().toISOString()}`\n    }\n  }\n];"
+      },
+      "id": "format-json",
+      "name": "Format JSON",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [250, 0]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "KrArunT",
+          "mode": ""
+        },
+        "repository": "my-blog",
+        "filePath": "posts.json",
+        "fileContent": "={{$json[\"content\"]}}",
+        "commitMessage": "={{$json[\"message\"]}}"
+      },
+      "id": "github-update",
+      "name": "Update GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [500, 0],
+      "webhookId": "a2a4b04b-6a01-4389-a779-aa26f86133aa",
+      "credentials": {
+        "githubApi": {
+          "id": "4zYnndAMxu1tDWfE",
+          "name": "GitHub account"
+        }
+      }
     }
+  ],
+  "connections": {
+    "start-node": {
+      "main": [
+        [
+          { "node": "openai-chat", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "manual-trigger": {
+      "main": [
+        [
+          { "node": "openai-chat", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "openai-chat": {
+      "main": [
+        [
+          { "node": "format-json", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "format-json": {
+      "main": [
+        [
+          { "node": "github-update", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
 }
