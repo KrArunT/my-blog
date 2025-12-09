@@ -19,16 +19,18 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
-        python3 - << 'EOF'
+        python3 - << EOF
 from huggingface_hub import upload_folder
+import os
+
+token = os.environ["HF_TOKEN"]
 
 upload_folder(
     repo_id="ArunKr/my-blog",
     folder_path=".",
     repo_type="space",
-    token="${HF_TOKEN}",
-    create_pr=False,     # (optional) push directly
-    create_repo=True     # create repo if it doesn't exist
+    token=token,
+    create_repo=True
 )
 EOF
 
