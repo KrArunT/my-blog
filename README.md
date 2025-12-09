@@ -7,6 +7,6 @@ sdk: static
 pinned: false
 ---
 
-# My Simple Blog
+# My Blog
 
 This is a static blog deployed to Hugging Face Spaces using GitHub Actions.
