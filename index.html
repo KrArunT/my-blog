@@ -1,22 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Simple Blog</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Simple Blog</title>
+    <meta name="description" content="A premium blog experience deployed on Hugging Face Spaces">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Welcome to My Blog 🚀</h1>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">MyBlog.</a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </header>
 
-  <div class="post">
-    <h2>My First Blog Post</h2>
-    <p>This is a simple blog deployed on Hugging Face Spaces using GitHub Actions!</p>
-  </div>
+    <main>
+        <section class="hero">
+            <h1>Welcome to My Blog</h1>
+            <p>Thoughts on code, design, and deployment 🚀</p>
+        </section>
 
-  <footer>
-    <p>Made with ❤️ by GitHub Actions + Hugging Face Spaces</p>
-  </footer>
+        <div class="post-grid">
+            <article class="post-card">
+                <div class="post-meta">December 8, 2025 • 2 min read</div>
+                <h2 class="post-title">My First Blog Post</h2>
+                <p class="post-excerpt">This is a simple blog deployed on Hugging Face Spaces using GitHub Actions! Now upgraded with a premium UI.</p>
+                <a href="#" class="btn-read">Read Article →</a>
+            </article>
+
+            <article class="post-card">
+                <div class="post-meta">Coming Soon • 5 min read</div>
+                <h2 class="post-title">Designing for the Future</h2>
+                <p class="post-excerpt">How modern web standards are changing the way we build for the web. Stay tuned for more insights.</p>
+                <a href="#" class="btn-read">Read Article →</a>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by GitHub Actions + Hugging Face Spaces</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
