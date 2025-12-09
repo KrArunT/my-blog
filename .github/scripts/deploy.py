@@ -2,7 +2,7 @@ import os
 from huggingface_hub import HfApi
 
 token = os.environ["HF_TOKEN"]
-repo_id = "KrArunT/my-blog"
+repo_id = "ArunKr/my-blog"
 
 api = HfApi(token=token)
 
