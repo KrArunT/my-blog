@@ -1,0 +1,81 @@
+{
+  "name": "OpenAI → GitHub JSON Save",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "OpenAI Chat",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [300, 300],
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-4o-mini",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Write a short summary about Artificial Intelligence"
+          }
+        ]
+      },
+      "credentials": {
+        "openAiApi": "YOUR_OPENAI_API_CREDENTIAL"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Prepare JSON File",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [600, 300],
+      "parameters": {
+        "functionCode": "const message = $json.data[0].message.content;\n\nconst fileJson = {\n  timestamp: new Date().toISOString(),\n  model: \"gpt-4o-mini\",\n  message\n};\n\nconst jsonString = JSON.stringify(fileJson, null, 2);\n\nreturn [{\n  json: {\n    fileContent: Buffer.from(jsonString).toString('base64'),\n    fileName: `openai_${Date.now()}.json`\n  }\n}];"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Save to GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [900, 300],
+      "parameters": {
+        "resource": "file",
+        "operation": "create",
+        "owner": "your-github-username",
+        "repository": "your-repository",
+        "filePath": "ai_outputs/{{ $json.fileName }}",
+        "binaryData": false,
+        "fileContent": "={{ $json.fileContent }}",
+        "commitMessage": "Save OpenAI response JSON via n8n",
+        "branch": "main"
+      },
+      "credentials": {
+        "githubApi": "YOUR_GITHUB_API_TOKEN"
+      }
+    }
+  ],
+  "connections": {
+    "OpenAI Chat": {
+      "main": [
+        [
+          {
+            "node": "Prepare JSON File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare JSON File": {
+      "main": [
+        [
+          {
+            "node": "Save to GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
