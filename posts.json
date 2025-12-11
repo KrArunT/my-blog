@@ -1,18 +1,1 @@
-[
-    {
-        "id": 1,
-        "title": "My First Blog",
-        "date": "December 8, 2025",
-        "readTime": "2 min read",
-        "excerpt": "This is a simple blog deployed on Hugging Face Spaces using GitHub Actions! Now upgraded with a premium UI.",
-        "link": "#"
-    },
-    {
-        "id": 2,
-        "title": "Designing for the Future",
-        "date": "Coming Soon",
-        "readTime": "5 min read",
-        "excerpt": "How modern web standards are changing the way we build for the web. Stay tuned for more insights.",
-        "link": "#"
-    }
-]
+{"id":1,"title":"Scaling Equivariant LLMs for Split-Simulatorulated Reality","date":"December 8, 2025","readTime":"1 min","excerpt":"The paper introduces a scalable approach for LLMs in split-simulated-realty tasks, enabling more complex visual interactions for robots and interaction devices.","link":"https://arxiv.org/abs/2309.01127#id=1" }
