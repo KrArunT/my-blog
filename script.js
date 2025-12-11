@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="post-meta">${post.date} • ${post.readTime}</div>
                     <h2 class="post-title">${post.title}</h2>
                     <p class="post-excerpt">${post.excerpt}</p>
-                    <a href="${post.link}" class="btn-read">Read Article →</a>
+                    <a href="${post.link}" class="btn-read" target="_blank" rel="noopener noreferrer"> Read Article → </a>
+
                 `;
                 postGrid.appendChild(article);
             });
