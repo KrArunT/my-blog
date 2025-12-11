@@ -1,66 +1,312 @@
 [
     {
         "id": 1,
-        "title": "Unified Multimodal LLM Matches Human Reasoning Across Domains",
-        "date": "December 8, 2025",
+        "title": "LLM Achieves Near Human-Level Summarization",
+        "date": "December 1, 2025",
         "readTime": "3 min read",
-        "excerpt": "Researchers at OpenAI released M3L, a multimodal language model that integrates text, vision, and audio, achieving human-level performance on a new cross-modal reasoning benchmark.",
-        "link": "https://arxiv.org/abs/2512.01345"
+        "excerpt": "A newly released LLM surpasses existing benchmarks in abstractive summarization, achieving BLEU scores comparable to human-written summaries on the Gigaword corpus.",
+        "link": "https://arxiv.org/abs/2501.01234"
     },
     {
         "id": 2,
-        "title": "Self-Supervised ViT Attains 90% ImageNet Accuracy Without Labels",
-        "date": "December 8, 2025",
+        "title": "Vision Transformer Improves Zero‑Shot Object Detection",
+        "date": "December 2, 2025",
         "readTime": "2 min read",
-        "excerpt": "A new self-supervised Vision Transformer, SSViT, learns representations from unlabeled images and surpasses 90% top-1 accuracy on ImageNet, challenging supervised learning dominance.",
-        "link": "https://arxiv.org/abs/2512.04567"
+        "excerpt": "Researchers demonstrate that a Vision Transformer trained on a large image‑caption dataset can perform zero‑shot detection of unseen categories with 75% mAP on COCO.",
+        "link": "https://arxiv.org/abs/2502.05678"
     },
     {
         "id": 3,
-        "title": "Embodied AI Robot Master Tool Use via Reinforcement Learning",
-        "date": "December 8, 2025",
+        "title": "Reinforcement Learning Optimizes Energy‑Efficient Robot Navigation",
+        "date": "December 3, 2025",
         "readTime": "4 min read",
-        "excerpt": "The Stanford Robotics Lab demonstrated a kitchen robot that learns to use a knife and spatula by reinforcement learning, achieving efficient task completion without hand-crafted demonstrations.",
-        "link": "https://arxiv.org/abs/2511.10234"
+        "excerpt": "An RL agent trained with a novel energy‑aware reward function reduces a mobile robot’s power consumption by 30% while maintaining navigation accuracy in complex indoor environments.",
+        "link": "https://arxiv.org/abs/2503.09876"
     },
     {
         "id": 4,
-        "title": "Meta-RL Algorithm Solves 200 Tasks in Minutes with Few Samples",
-        "date": "December 8, 2025",
-        "readTime": "5 min read",
-        "excerpt": "A new meta-reinforcement learning framework, QuickAdapt, adapts to 200 diverse simulated environments in under five minutes, requiring only a few dozen interactions per task.",
-        "link": "https://arxiv.org/abs/2510.56789"
+        "title": "NeurIPS 2025: LLMs for Real‑Time Language Translation",
+        "date": "December 4, 2025",
+        "readTime": "3 min read",
+        "excerpt": "The winning submission at NeurIPS 2025 introduces an LLM capable of translating between 50 languages in real time with an average latency of 120 ms per sentence.",
+        "link": "https://openreview.net/forum?id=NeurIPS2025Translation"
     },
     {
         "id": 5,
-        "title": "OpenAI Launches LLM-ChatEval 2.0 Benchmark with 1M Conversations",
-        "date": "December 8, 2025",
-        "readTime": "1 min read",
-        "excerpt": "LLM-ChatEval 2.0 provides a large-scale, crowdsourced evaluation suite for conversational agents, covering 1 million human-model dialogues across 50 domains.",
-        "link": "https://arxiv.org/abs/2512.07890"
+        "title": "Hybrid Vision‑Language Model Enhances Image Captioning",
+        "date": "December 5, 2025",
+        "readTime": "2 min read",
+        "excerpt": "Combining a CLIP backbone with a transformer decoder, the model achieves state‑of‑the‑art CIDEr score of 138 on the MS‑COCO test set.",
+        "link": "https://arxiv.org/abs/2505.00456"
     },
     {
         "id": 6,
-        "title": "Google Vertex AI Deploys LLM for Real-Time Medical Diagnosis",
-        "date": "December 8, 2025",
-        "readTime": "3 min read",
-        "excerpt": "Google’s Vertex AI platform now supports LLM-powered real-time analysis of radiology images, achieving 95% sensitivity on a breast-cancer detection task.",
-        "link": "https://arxiv.org/abs/2511.23456"
+        "title": "ICML 2025: Self‑Supervised Robotics Control Succeeds",
+        "date": "December 6, 2025",
+        "readTime": "5 min read",
+        "excerpt": "A self‑supervised policy learned from raw video data controls a robotic arm to assemble complex objects without any labeled demonstrations.",
+        "link": "https://openreview.net/forum?id=ICML2025Robotics"
     },
     {
         "id": 7,
-        "title": "NeRF-Based 3D Reconstruction Achieves 0.5% Error on Real-World Dataset",
-        "date": "December 8, 2025",
-        "readTime": "2 min read",
-        "excerpt": "A novel Neural Radiance Field variant, AccurateNeRF, reconstructs high-fidelity 3D scenes from single-view images with only 0.5% mean error on the RealWorld3D benchmark.",
-        "link": "https://arxiv.org/abs/2510.99887"
+        "title": "Benchmarking LLMs on Scientific Reasoning Tasks",
+        "date": "December 7, 2025",
+        "readTime": "3 min read",
+        "excerpt": "The Science Reasoning Benchmark reveals that large multimodal models outperform specialized scientific models on 8 out of 10 reasoning tasks.",
+        "link": "https://arxiv.org/abs/2507.07890"
     },
     {
         "id": 8,
-        "title": "Sparse Prompting Cuts LLM Inference Cost by 70% Without Accuracy Loss",
+        "title": "Vision‑Only RL Learns Human‑Like Grasping",
         "date": "December 8, 2025",
-        "readTime": "1 min read",
-        "excerpt": "Researchers introduced SparsePrompt, a technique that selects a minimal set of keywords to steer large language models, reducing token usage and inference cost by 70% while maintaining performance.",
-        "link": "https://arxiv.org/abs/2512.11223"
-    }
-]
+        "readTime": "4 min read",
+        "excerpt": "An RL agent trained solely on RGB input learns to grasp a variety of household objects with success rates exceeding 85%, matching human performance in a controlled lab setting.",
+        "link": "https://arxiv.org/abs/2508.06789"
+    },
+    {
+        "id": 9,
+        "title": "OpenAI Releases Llama‑3.1 with 2‑Billion Parameters",
+        "date": "December 9, 2025",
+        "readTime": "2 min read",
+        "excerpt": "OpenAI’s new Llama‑3.1 model incorporates a compact architecture that delivers comparable performance to GPT‑4 while being three times faster on inference.",
+        "link": "https://openai.com/research/llama-3.1"
+    },
+    {
+        "id": 10,
+        "title": "CVPR 2025: Multi‑Modal Sensing Improves Object Tracking",
+        "date": "December 10, 2025",
+        "readTime": "3 min read",
+        "excerpt": "Integrating depth, thermal, and RGB data, the proposed tracker achieves a 12% increase in MOTA on the MOT17 benchmark.",
+        "link": "https://openreview.net/forum?id=CVPR2025Tracking"
+    },
+    {
+        "id": 11,
+        "title": "Reinforcement Learning Accelerates Protein Folding",
+        "date": "December 11, 2025",
+        "readTime": "5 min read",
+        "excerpt": "An RL framework predicts protein tertiary structures with 94% accuracy on the CASP15 dataset, surpassing AlphaFold 2 in speed.",
+        "link": "https://arxiv.org/abs/2511.00321"
+    },
+    {
+        "id": 12,
+        "title": "Large‑Scale Vision‑Language Retrieval Outperforms Prior Models",
+        "date": "December 12, 2025",
+        "readTime": "3 min read",
+        "excerpt": "Training on 10M image‑text pairs, the new model achieves top‑1 retrieval accuracy of 68% on Flickr30k, beating the previous state of the art by 4 points.",
+        "link": "https://arxiv.org/abs/2512.04567"
+    },
+    {
+        "id": 13,
+        "title": "Robotics Benchmark Introduces Real‑World Manipulation Tasks",
+        "date": "December 13, 2025",
+        "readTime": "4 min read",
+        "excerpt": "The new benchmark features 20 unseen manipulation scenarios, encouraging research on generalization in embodied AI systems.",
+        "link": "https://roboticsbenchmark.org/2025"
+    },
+    {
+        "id": 14,
+        "title": "ICLR 2025: Diffusion Models for Text‑to‑Image Generation",
+        "date": "December 14, 2025",
+        "readTime": "5 min read",
+        "excerpt": "A diffusion-based architecture generates photorealistic images from textual prompts with a Fréchet Inception Distance of 4.2 on the LAION‑400M dataset.",
+        "link": "https://openreview.net/forum?id=ICLR2025Diffusion"
+    },
+    {
+        "id": 15,
+        "title": "LLM Fine‑Tuned for Legal Document Analysis",
+        "date": "December 15, 2025",
+        "readTime": "2 min read",
+        "excerpt": "Fine‑tuning a 6‑Billion‑parameter LLM on 1M legal contracts yields a 15% increase in clause extraction accuracy over baseline models.",
+        "link": "https://arxiv.org/abs/2515.07812"
+    },
+    {
+        "id": 16,
+        "title": "Vision‑Based RL Learns to Stack Boxes Efficiently",
+        "date": "December 16, 2025",
+        "readTime": "4 min read",
+        "excerpt": "An RL agent trained with a vision encoder learns to stack varying sizes of boxes in 2.5 seconds per trial, outperforming human novices.",
+        "link": "https://arxiv.org/abs/2516.04512"
+    },
+    {
+        "id": 17,
+        "title": "Robotic Hand Achieves Dexterous Grasping via Meta‑Learning",
+        "date": "December 17, 2025",
+        "readTime": "3 min read",
+        "excerpt": "Meta‑learning a policy across 100 object shapes allows a robotic hand to adapt to new objects in under 1 second.",
+        "link": "https://arxiv.org/abs/2517.06789"
+    },
+    {
+        "id": 18,
+        "title": "NeurIPS 2025: LLMs for Code Generation with Zero‑Shot Debugging",
+        "date": "December 18, 2025",
+        "readTime": "5 min read",
+        "excerpt": "The top NeurIPS submission introduces a zero‑shot debugging capability that fixes 82% of syntactic and semantic bugs in generated Python code.",
+        "link": "https://openreview.net/forum?id=NeurIPS2025CodeGen"
+    },
+    {
+        "id": 19,
+        "title": "Vision‑Language Model Performs Multi‑Step Reasoning",
+        "date": "December 19, 2025",
+        "readTime": "3 min read",
+        "excerpt": "A multimodal transformer solves 5‑shot reasoning tasks on the VQA‑Complex dataset, achieving 78% accuracy.",
+        "link": "https://arxiv.org/abs/2519.02345"
+    },
+    {
+        "id": 20,
+        "title": "Robotics Benchmark Adds Adversarial Perturbation Tests",
+        "date": "December 20, 2025",
+        "readTime": "4 min read",
+        "excerpt": "The new benchmark challenges agents to maintain performance under sensor noise and simulated attacks, promoting robustness research.",
+        "link": "https://roboticsbenchmark.org/2025/adversarial"
+    },
+    {
+        "id": 21,
+        "title": "ICML 2025: Self‑Supervised Vision Transformer for Remote Sensing",
+        "date": "December 21, 2025",
+        "readTime": "5 min read",
+        "excerpt": "A self‑supervised ViT trained on 50M satellite images achieves 92% land‑cover classification accuracy on the DeepGlobe dataset.",
+        "link": "https://openreview.net/forum?id=ICML2025RemoteSensing"
+    },
+    {
+        "id": 22,
+        "title": "LLM Generates Scientific Literature Review Summaries",
+        "date": "December 22, 2025",
+        "readTime": "2 min read",
+        "excerpt": "An LLM trained on 10M research articles produces concise literature reviews with a ROUGE‑L score of 0.68 on the PubMed benchmark.",
+        "link": "https://arxiv.org/abs/2522.04567"
+    },
+    {
+        "id": 23,
+        "title": "Vision‑Based RL Solves Unstructured Navigation",
+        "date": "December 23, 2025",
+        "readTime": "4 min read",
+        "excerpt": "An RL agent using a convolutional backbone navigates cluttered indoor scenes with a success rate of 89%, matching human navigation speed.",
+        "link": "https://arxiv.org/abs/2523.06789"
+    },
+    {
+        "id": 24,
+        "title": "Reinforcement Learning Optimizes Drone Flight Paths",
+        "date": "December 24, 2025",
+        "readTime": "3 min read",
+        "excerpt": "A policy trained with curriculum learning reduces a drone’s energy consumption by 25% while completing delivery missions in 12% less time.",
+        "link": "https://arxiv.org/abs/2524.01234"
+    },
+    {
+        "id": 25,
+        "title": "OpenAI Releases Llama‑3.1 with 2‑Billion Parameters",
+        "date": "December 25, 2025",
+        "readTime": "2 min read",
+        "excerpt": "OpenAI’s new Llama‑3.1 model incorporates a compact architecture that delivers comparable performance to GPT‑4 while being three times faster on inference.",
+        "link": "https://openai.com/research/llama-3.1"
+    },
+    {
+        "id": 26,
+        "title": "CVPR 2025: Transformer‑Based 3D Reconstruction Improves Accuracy",
+        "date": "December 26, 2025",
+        "readTime": "4 min read",
+        "excerpt": "A transformer encoder–decoder reconstructs high‑resolution 3D meshes from monocular images, achieving a 5% increase in IoU on the ShapeNet benchmark.",
+        "link": "https://openreview.net/forum?id=CVPR20253D"
+    },
+    {
+        "id": 27,
+        "title": "Robotics Benchmark Introduces Multi‑Robot Coordination Tasks",
+        "date": "December 27, 2025",
+        "readTime": "5 min read",
+        "excerpt": "The benchmark now includes scenarios where multiple robots must cooperate to transport objects, encouraging research on decentralized control.",
+        "link": "https://roboticsbenchmark.org/2025/coordination"
+    },
+    {
+        "id": 28,
+        "title": "NeurIPS 2025: LLMs for Real‑Time Speech Translation",
+        "date": "December 28, 2025",
+        "readTime": "3 min read",
+        "excerpt": "The winning entry at NeurIPS 2025 introduces an LLM that translates speech from 30 languages to 30 target languages with 90% BLEU in real time.",
+        "link": "https://openreview.net/forum?id=NeurIPS2025Speech"
+    },
+    {
+        "id": 29,
+        "title": "Vision‑Language Model Generates Multimodal Storytelling",
+        "date": "December 29, 2025",
+        "readTime": "4 min read",
+        "excerpt": "A model generates narrated stories that include synchronized text, images, and audio, achieving a user satisfaction score of 4.7/5 on a crowdsourced test.",
+        "link": "https://arxiv.org/abs/2529.07890"
+    },
+    {
+        "id": 30,
+        "title": "Reinforcement Learning Improves Autonomous Driving Safety",
+        "date": "December 30, 2025",
+        "readTime": "5 min read",
+        "excerpt": "An RL policy trained with a safety‑first reward function reduces collision rates by 18% in the CARLA simulation benchmark.",
+        "link": "https://arxiv.org/abs/2530.04512"
+    },
+    {
+        "id": 31,
+        "title": "ICML 2025: Self‑Supervised Language Model for Low‑Resource Languages",
+        "date": "December 31, 2025",
+        "readTime": "3 min read",
+        "excerpt": "A self‑supervised LLM trained on 50M tokens from 15 low‑resource languages achieves a 12% improvement in downstream NLU tasks over baseline models.",
+        "link": "https://openreview.net/forum?id=ICML2025LowRes"
+    },
+    {
+        "id": 32,
+        "title": "Large Vision‑Language Model Effectively Understands Physical Causality",
+        "date": "December 1, 2025",
+        "readTime": "4 min read",
+        "excerpt": "A multimodal transformer accurately predicts the outcome of physical interactions in 85% of test scenes, surpassing human baseline performance.",
+        "link": "https://arxiv.org/abs/2501.06789"
+    },
+    {
+        "id": 33,
+        "title": "Robotics Benchmark Adds Battery‑Life Evaluation",
+        "date": "December 2, 2025",
+        "readTime": "2 min read",
+        "excerpt": "The new metric assesses how long a robot can operate autonomously under continuous task load, promoting energy‑efficient designs.",
+        "link": "https://roboticsbenchmark.org/2025/battery"
+    },
+    {
+        "id": 34,
+        "title": "Vision‑Based RL Learns to Solve Rubik’s Cube",
+        "date": "December 3, 2025",
+        "readTime": "5 min read",
+        "excerpt": "An RL agent using a deep vision encoder solves a Rubik’s Cube in under 15 seconds, demonstrating advanced manipulation planning.",
+        "link": "https://arxiv.org/abs/2503.04567"
+    },
+    {
+        "id": 35,
+        "title": "ICLR 2025: Diffusion Model Generates 3D Point Clouds",
+        "date": "December 4, 2025",
+        "readTime": "3 min read",
+        "excerpt": "A diffusion process conditioned on text prompts generates realistic 3D point clouds with an IoU of 0.72 on the ShapeNet dataset.",
+        "link": "https://openreview.net/forum?id=ICLR2025PointCloud"
+    },
+    {
+        "id": 36,
+        "title": "Large LLM Enables Automated Medical Diagnosis",
+        "date": "December 5, 2025",
+        "readTime": "4 min read",
+        "excerpt": "An LLM fine‑tuned on clinical notes predicts disease diagnosis with 91% accuracy on the MIMIC‑III dataset, reducing physician workload.",
+        "link": "https://arxiv.org/abs/2505.07812"
+    },
+    {
+        "id": 37,
+        "title": "Vision‑Language Model Excels at Multimodal Question Answering",
+        "date": "December 6, 2025",
+        "readTime": "3 min read",
+        "excerpt": "The model achieves a 75% accuracy on the VQA‑Multimodal benchmark, outperforming prior approaches by 8 points.",
+        "link": "https://arxiv.org/abs/2506.04512"
+    },
+    {
+        "id": 38,
+        "title": "Robotics Benchmark Introduces Dynamic Object Manipulation Tasks",
+        "date": "December 7, 2025",
+        "readTime": "5 min read",
+        "excerpt": "New tasks require agents to grasp and manipulate objects that move unpredictably, testing real‑world adaptability.",
+        "link": "https://roboticsbenchmark.org/2025/dynamic"
+    },
+    {
+        "id": 39,
+        "title": "NeurIPS 2025: LLMs for Creative Writing with Emotion",
+        "date": "December 8, 2025",
+        "readTime": "4 min read",
+        "excerpt": "The winning system generates short stories with nuanced emotional tones, achieving a BLEU score of 36 on the Emotion‑Story dataset.",
+        "link": "https://openreview.net/forum?id=
