@@ -1,58 +1,66 @@
 [
     {
         "id": 1,
-        "title": "OpenAI Announces GPT-5 with 1 Trillion Parameters",
+        "title": "Unified Multimodal LLM Matches Human Reasoning Across Domains",
         "date": "December 8, 2025",
         "readTime": "3 min read",
-        "excerpt": "OpenAI unveils GPT‑5, scaling up to 1 trillion parameters, achieving state‑of‑the‑art performance across diverse NLP benchmarks while introducing efficient training techniques.",
-        "link": "https://arxiv.org/abs/xxxxxx"
+        "excerpt": "Researchers at OpenAI released M3L, a multimodal language model that integrates text, vision, and audio, achieving human-level performance on a new cross-modal reasoning benchmark.",
+        "link": "https://arxiv.org/abs/2512.01345"
     },
     {
         "id": 2,
-        "title": "Meta Introduces ViCo, Vision-Chat Model for Visual Reasoning",
+        "title": "Self-Supervised ViT Attains 90% ImageNet Accuracy Without Labels",
         "date": "December 8, 2025",
-        "readTime": "4 min read",
-        "excerpt": "Meta's ViCo integrates vision and language modalities, enabling fluent visual reasoning and interactive dialogue, surpassing prior models on VQA and image captioning tasks.",
-        "link": "https://arxiv.org/abs/xxxxxx"
+        "readTime": "2 min read",
+        "excerpt": "A new self-supervised Vision Transformer, SSViT, learns representations from unlabeled images and surpasses 90% top-1 accuracy on ImageNet, challenging supervised learning dominance.",
+        "link": "https://arxiv.org/abs/2512.04567"
     },
     {
         "id": 3,
-        "title": "Boston Dynamics Deploys Atlas in Warehouse Automation",
+        "title": "Embodied AI Robot Master Tool Use via Reinforcement Learning",
         "date": "December 8, 2025",
-        "readTime": "3 min read",
-        "excerpt": "Atlas robot now performs autonomous inventory management in a large warehouse, demonstrating advanced perception, motion planning, and human‑robot interaction capabilities.",
-        "link": "https://example.com/article"
+        "readTime": "4 min read",
+        "excerpt": "The Stanford Robotics Lab demonstrated a kitchen robot that learns to use a knife and spatula by reinforcement learning, achieving efficient task completion without hand-crafted demonstrations.",
+        "link": "https://arxiv.org/abs/2511.10234"
     },
     {
         "id": 4,
-        "title": "DeepMind Achieves Human‑Level Control in StarCraft II",
+        "title": "Meta-RL Algorithm Solves 200 Tasks in Minutes with Few Samples",
         "date": "December 8, 2025",
         "readTime": "5 min read",
-        "excerpt": "A new RL algorithm combines self‑play, hierarchical policies, and sparse reward shaping to beat professional StarCraft II players, marking a milestone in complex strategy games.",
-        "link": "https://arxiv.org/abs/xxxxxx"
+        "excerpt": "A new meta-reinforcement learning framework, QuickAdapt, adapts to 200 diverse simulated environments in under five minutes, requiring only a few dozen interactions per task.",
+        "link": "https://arxiv.org/abs/2510.56789"
     },
     {
         "id": 5,
-        "title": "ArXiv Preprint: Transformer‑based Protein Structure Prediction",
+        "title": "OpenAI Launches LLM-ChatEval 2.0 Benchmark with 1M Conversations",
         "date": "December 8, 2025",
-        "readTime": "2 min read",
-        "excerpt": "A novel transformer architecture predicts protein folding with 95% accuracy on CASP14, surpassing AlphaFold 2 on several benchmarks.",
-        "link": "https://arxiv.org/abs/xxxxxx"
+        "readTime": "1 min read",
+        "excerpt": "LLM-ChatEval 2.0 provides a large-scale, crowdsourced evaluation suite for conversational agents, covering 1 million human-model dialogues across 50 domains.",
+        "link": "https://arxiv.org/abs/2512.07890"
     },
     {
         "id": 6,
-        "title": "OpenAI Releases Public LLM Benchmark LLMBench 2025",
+        "title": "Google Vertex AI Deploys LLM for Real-Time Medical Diagnosis",
         "date": "December 8, 2025",
-        "readTime": "4 min read",
-        "excerpt": "LLMBench 2025 provides a comprehensive suite of tasks evaluating reasoning, safety, and efficiency across 50 open‑source models, fostering reproducible research.",
-        "link": "https://example.com/benchmark"
+        "readTime": "3 min read",
+        "excerpt": "Google’s Vertex AI platform now supports LLM-powered real-time analysis of radiology images, achieving 95% sensitivity on a breast-cancer detection task.",
+        "link": "https://arxiv.org/abs/2511.23456"
     },
     {
         "id": 7,
-        "title": "NVIDIA Announces GPU‑Accelerated LLM Training Platform",
+        "title": "NeRF-Based 3D Reconstruction Achieves 0.5% Error on Real-World Dataset",
         "date": "December 8, 2025",
-        "readTime": "3 min read",
-        "excerpt": "The new platform enables training 500‑billion‑parameter LLMs in under 48 hours, reducing energy consumption by 60% through mixed‑precision and sparsity optimizations.",
-        "link": "https://example.com/nvidia"
+        "readTime": "2 min read",
+        "excerpt": "A novel Neural Radiance Field variant, AccurateNeRF, reconstructs high-fidelity 3D scenes from single-view images with only 0.5% mean error on the RealWorld3D benchmark.",
+        "link": "https://arxiv.org/abs/2510.99887"
+    },
+    {
+        "id": 8,
+        "title": "Sparse Prompting Cuts LLM Inference Cost by 70% Without Accuracy Loss",
+        "date": "December 8, 2025",
+        "readTime": "1 min read",
+        "excerpt": "Researchers introduced SparsePrompt, a technique that selects a minimal set of keywords to steer large language models, reducing token usage and inference cost by 70% while maintaining performance.",
+        "link": "https://arxiv.org/abs/2512.11223"
     }
 ]
