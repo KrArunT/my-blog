@@ -302,11 +302,5 @@
         "readTime": "5 min read",
         "excerpt": "New tasks require agents to grasp and manipulate objects that move unpredictably, testing real‑world adaptability.",
         "link": "https://roboticsbenchmark.org/2025/dynamic"
-    },
-    {
-        "id": 39,
-        "title": "NeurIPS 2025: LLMs for Creative Writing with Emotion",
-        "date": "December 8, 2025",
-        "readTime": "4 min read",
-        "excerpt": "The winning system generates short stories with nuanced emotional tones, achieving a BLEU score of 36 on the Emotion‑Story dataset.",
-        "link": "https://openreview.net/forum?id=
+    }
+]
